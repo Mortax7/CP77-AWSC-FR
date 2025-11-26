@@ -1,7 +1,3 @@
-local L = require("app.localization")
-local RangedUI = require("app.configuration.uis.RangedUI")
-local MeleeUI  = require("app.configuration.uis.MeleeUI")
-
 MainUI = {
     UI = nil,
     xhairsOptions = {
@@ -43,7 +39,7 @@ function MainUI.Init()
     MainUI.UI = GetMod("nativeSettings")
 
     if MainUI.UI then
-        log("MainUI: Starting...")
+        log("MainUI: Démarrage...")
 
         local status, errorMessage = pcall(function()
             RangedUI.Init()

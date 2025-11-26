@@ -82,7 +82,7 @@ ConfigStatics = {
                 ["Items.Preset_Nue_Arasaka_2020"] = {
                     localizedName = "Tamayura",
                     disclaimer =
-                    "Tamayura does not inherit any stat from Nue, despite being listed as a variant"
+                    "Tamayura n’hérite d’aucune statistique du Nue, malgré son statut de variante."
                 }
             }
         },

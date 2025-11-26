@@ -7,14 +7,14 @@ function MeleeUI.Init()
 
     ui.addTab(
         "/AWSCMelee",
-        "Adv. Melee Stats"
+        "Stat Avancées d'Armes"
     )
 
     local uiOptions = {}
 
     ui.addSubcategory(
         "/AWSCMelee/classSelector",
-        "Class"
+        "Classe"
     )
 
     local options = table_keys(ConfigFile.Weapons.MeleeWeapon)
@@ -138,8 +138,8 @@ function MeleeUI.Init()
                             function()
                                 ui.addSelectorString(
                                     "/AWSCMelee/variant",
-                                    "Crosshair",
-                                    "Crosshair",
+                                    "Réticule",
+                                    "Réticule",
                                     MainUI.xhairsOptions,
                                     table_indexOf(MainUI.xhairsOptions, storageVariant.Stats.Crosshair.custom),
                                     table_indexOf(MainUI.xhairsOptions, storageVariant.Stats.Crosshair.default),
@@ -185,12 +185,12 @@ function MeleeUI.Init()
                             ui.addSubcategory(
                                 "/AWSCMelee/iconicDisclaimer",
                                 variantName ..
-                                " inherit all its stats from Default, and may have hidden mods affecting certain attributes"
+                                " hérite de toutes ses statistiques de la variante par défaut et peut avoir des mods cachés affectant certains attributs."
                             )
                         else
                             ui.addSubcategory(
                                 "/AWSCMelee/iconicDisclaimer",
-                                "Note: Iconics inherit some stats from Default, and may have hidden mods affecting certain attributes"
+                                "Note : Les armes iconiques héritent de certaines statistiques de la variante par défaut et peuvent avoir des mods cachés affectant certains attributs."
                             )
                         end
                     end
@@ -254,8 +254,8 @@ function MeleeUI.Init()
 
                 ui.addSelectorString(
                     "/AWSCMelee/weapon",
-                    "Variants",
-                    "Choose a weapon variant",
+                    "Variantes",
+                    "Choisissez une variante d’arme",
                     variantLabels,
                     1,
                     1,
@@ -267,8 +267,8 @@ function MeleeUI.Init()
 
             ui.addSelectorString(
                 "/AWSCMelee/kind",
-                "Weapons",
-                "Choose a weapon",
+                "Armes",
+                "Choisissez une arme",
                 weaponLabels,
                 1,
                 1,
@@ -280,8 +280,8 @@ function MeleeUI.Init()
 
         ui.addSelectorString(
             "/AWSCMelee/class",
-            "Kinds",
-            "Choose a kind",
+            "Types",
+            "Choisissez un type",
             kindLabels,
             1,
             1,
@@ -294,7 +294,7 @@ function MeleeUI.Init()
     ui.addSelectorString(
         "/AWSCMelee/classSelector",
         "Classes",
-        "Choose a class",
+        "Choisissez une classe",
         optionsLabels,
         1,
         1,
