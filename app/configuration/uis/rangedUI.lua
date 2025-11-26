@@ -1,3 +1,5 @@
+local L = require("app.localization")
+
 RangedUI = {
 
 }
@@ -7,14 +9,14 @@ function RangedUI.Init()
 
     ui.addTab(
         "/AWSCRanged",
-        "Adv. Weapons Stats"
+        L.t("menu_title_short")
     )
 
     local uiOptions = {}
 
     ui.addSubcategory(
         "/AWSCRanged/classSelector",
-        "Class"
+        L.t("ranged_class_subcat")
     )
 
     local options = table_keys(ConfigFile.Weapons.RangedWeapon)
@@ -63,7 +65,6 @@ function RangedUI.Init()
                 ui.removeSubcategory("/AWSCRanged/weapon")
                 ui.removeSubcategory("/AWSCRanged/variant")
 
-
                 local weaponLabel = weaponLabels[value]
                 local weaponRecordName = weapons[value]
 
@@ -77,10 +78,8 @@ function RangedUI.Init()
                 }
 
                 local variantLabels = {
-                    [1] = "Default"
+                    [1] = L.t("variant_default")
                 }
-
-
 
                 if not pcall(function()
                         table_map(
@@ -107,16 +106,12 @@ function RangedUI.Init()
                     weaponLabel
                 )
 
-
                 local setVariant = function(value)
                     ui.removeSubcategory("/AWSCRanged/variant")
                     ui.removeSubcategory("/AWSCRanged/iconicDisclaimer")
 
-
-
                     local variantName = variantNames[value]
                     local variantLabel = variantLabels[value]
-
 
                     local storageVariant = storageWeapon.Variants[variantName]
 
@@ -124,8 +119,7 @@ function RangedUI.Init()
 
                     ---@type gamedataWeaponItem_Record
                     --local variantRecord = TweakDB:GetRecord(storageVariant.recordPath)
-
-
+					
                     ui.addSubcategory(
                         "/AWSCRanged/variant",
                         variantLabel
@@ -138,8 +132,8 @@ function RangedUI.Init()
                             function()
                                 ui.addSelectorString(
                                     "/AWSCRanged/variant",
-                                    "Crosshair",
-                                    "Crosshair",
+                                    L.t("option_crosshair_label"),
+                                    L.t("option_crosshair_desc"), 
                                     MainUI.xhairsOptions,
                                     table_indexOf(MainUI.xhairsOptions, storageVariant.Stats.Crosshair.custom),
                                     table_indexOf(MainUI.xhairsOptions, storageVariant.Stats.Crosshair.default),
@@ -184,13 +178,12 @@ function RangedUI.Init()
                             ui.removeSubcategory("/AWSCRanged/variant")
                             ui.addSubcategory(
                                 "/AWSCRanged/iconicDisclaimer",
-                                variantName ..
-                                " inherit all its stats from Default, and may have hidden mods affecting certain attributes"
+                                variantName .. L.t("iconic_inherit_note")
                             )
                         else
                             ui.addSubcategory(
                                 "/AWSCRanged/iconicDisclaimer",
-                                "Note: Iconics inherit some stats from Default, and may have hidden mods affecting certain attributes"
+                                L.t("iconic_generic_note")
                             )
                         end
                     end
@@ -199,7 +192,6 @@ function RangedUI.Init()
                     if isIconic then subcat = "/AWSCRanged/iconicDisclaimer" end
 
                     local validStats = table_filter(storageVariant.Stats, function(k, v) return type(v) == "table" end)
-
 
                     log("RangedUI: " .. table_count(validStats) .. " stats identified:")
                     log(table_keys(validStats))
@@ -214,8 +206,8 @@ function RangedUI.Init()
                                 local label = statValues.uiLabel
                                 local desc = statValues.uiDescription
                                 if statValues.modifierType == "Multiplier" then
-                                    label = label .. " Multiplier"
-                                    desc = desc .. " Multiplier"
+                                    label = label .. " " .. L.t("suffix_multiplier")
+                                    desc = desc .. " " .. L.t("suffix_multiplier")
                                 end
                                 ui.addRangeFloat(
                                     subcat,                   --path
@@ -243,7 +235,7 @@ function RangedUI.Init()
 
                             if not status then
                                 log("RangedUI: Failed to create the control for the " ..
-                                    stat ..
+                                    stat .. 
                                     " stat for the '" .. variantLabel .. "' variant of '" .. weaponLabel .. "'")
                                 log(errorMessage)
                                 log(statValues)
@@ -254,8 +246,8 @@ function RangedUI.Init()
 
                 ui.addSelectorString(
                     "/AWSCRanged/weapon",
-                    "Variants",
-                    "Choose a weapon variant",
+                    L.t("selector_variants_label"),
+                    L.t("selector_variants_desc"),
                     variantLabels,
                     1,
                     1,
@@ -267,8 +259,8 @@ function RangedUI.Init()
 
             ui.addSelectorString(
                 "/AWSCRanged/kind",
-                "Weapons",
-                "Choose a weapon",
+                L.t("selector_weapons_label"),
+                L.t("selector_weapons_desc"),
                 weaponLabels,
                 1,
                 1,
@@ -280,8 +272,8 @@ function RangedUI.Init()
 
         ui.addSelectorString(
             "/AWSCRanged/class",
-            "Kinds",
-            "Choose a kind",
+            L.t("selector_kinds_label"),
+            L.t("selector_kinds_desc"),
             kindLabels,
             1,
             1,
@@ -293,8 +285,8 @@ function RangedUI.Init()
 
     ui.addSelectorString(
         "/AWSCRanged/classSelector",
-        "Classes",
-        "Choose a class",
+        L.t("selector_classes_label"),
+        L.t("selector_classes_desc"),
         optionsLabels,
         1,
         1,

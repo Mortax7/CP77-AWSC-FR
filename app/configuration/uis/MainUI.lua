@@ -1,3 +1,7 @@
+local L = require("app.localization")
+local RangedUI = require("app.configuration.uis.RangedUI")
+local MeleeUI  = require("app.configuration.uis.MeleeUI")
+
 MainUI = {
     UI = nil,
     xhairsOptions = {
